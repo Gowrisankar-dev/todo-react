@@ -1,25 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useObserver, observer } from 'mobx-react-lite'
+import { TodoContext } from './app-store-context';
+import { TodoInput } from './components/todo-input';
+import { TodoItem } from './components/todo-item';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const { todoStore } = React.useContext(TodoContext);
+  return useObserver(() =>
+      <div className='todos-container'>
+        <TodoInput addTodo={todoStore.addTodo} />
+        {
+          todoStore.todos.map((todo) => {
+            <TodoItem
+              todo={todo}
+              removeTodo={todoStore.removeTodo}
+              toggleTodo={todoStore.toggleTodo}
+              key={todo.id}
+            />
+          })
+        }
+        <div>{todoStore.todosCompletedCount} Task(s) Completed</div>
+      </div>
   );
 }
 
