@@ -8,7 +8,7 @@ interface ITodoInputProps {
 export const TodoInput: React.FC<ITodoInputProps> = ({ addTodo }) => {
     const [todo, setTodo] = React.useState('');
 
-    const updateTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTodo(event.target.value);
     }
 
@@ -18,10 +18,16 @@ export const TodoInput: React.FC<ITodoInputProps> = ({ addTodo }) => {
             setTodo('');
         }
     }
-
+    
+    const onInputKeyPress = (event: ({ key: string })) => {
+        if(event.key === 'Enter'){
+            onAddTodoClick();
+        }
+    }
+    
     return (
         <div>
-            <input type='text' value= {todo} onChange={updateTodo} placeholder='Type Here!...' />
+            <input type='text' value={todo} onChange={onInputChange} onKeyPress={onInputKeyPress} placeholder='Type Here!...' />
             <button onClick={onAddTodoClick}>Add Task</button>
         </div>
     );
