@@ -5,14 +5,14 @@ interface IAppStoreContextValue {
     todoStore: TodoStore
 }
 
-export const TodoContext = React.createContext<IAppStoreContextValue>({} as IAppStoreContextValue);
-
 const todoStore = new TodoStore();
 
-export const TodoContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+export const AppStoreContext = React.createContext<IAppStoreContextValue>({} as IAppStoreContextValue);
+
+export const AppStoreContextProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
     return (
-        <TodoContext.Provider value={{ todoStore }}>
+        <AppStoreContext.Provider value={{ todoStore }}>
             {children}
-        </TodoContext.Provider>
+        </AppStoreContext.Provider>
     )
 }

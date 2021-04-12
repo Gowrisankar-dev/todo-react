@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 import { observer } from 'mobx-react'
-import { TodoContext } from './app-store-context';
+import { AppStoreContext } from './app-store-context';
 import { TodoInput } from './components/todo-input';
 import { TodoItem } from './components/todo-item';
 
 const App = observer(() => {
-  const { todoStore } = React.useContext(TodoContext);
+  const { todoStore } = React.useContext(AppStoreContext);
   return (
     <div className='todos-container'>
       <TodoInput addTodo={todoStore.addTodo} />

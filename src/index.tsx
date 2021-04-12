@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { TodoContextProvider } from './app-store-context';
+import { AppStoreContextProvider } from './app-store-context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TodoContextProvider>
+    <AppStoreContextProvider>
     <App />
-    </TodoContextProvider>
+    </AppStoreContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
