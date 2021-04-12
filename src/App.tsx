@@ -24,6 +24,10 @@ const App = observer(() => {
       }
       <div>{todoStore.availableTodosCount} item(s) available</div>
       <div>{todoStore.todosCompletedCount} item(s) completed</div>
+      <div>
+        <button onClick = {todoStore.onUndoAction}>Undo</button>
+        <button onClick = {todoStore.onRedoAction}>Redo</button>
+      </div>
     </div>
   );
 })

@@ -12,7 +12,7 @@ export const TodoItem: React.FC<ITodoItem> = ({ todo, removeTodo, toggleTodo }) 
 
     return (
         <div>
-            <input type='checkbox' onChange={() => { toggleTodo(todo) }} />
+            <input type='checkbox' onChange={() => { toggleTodo(todo) }} checked={todo.completed} />
             <span>{todo.title}</span>
             <button onClick={() => { removeTodo(todo.id) }}>X</button>
         </div>
