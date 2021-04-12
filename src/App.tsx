@@ -1,28 +1,31 @@
 import React from 'react';
 import './App.css';
-import { useObserver, observer } from 'mobx-react-lite'
+import { observer } from 'mobx-react'
 import { TodoContext } from './app-store-context';
 import { TodoInput } from './components/todo-input';
 import { TodoItem } from './components/todo-item';
 
-function App() {
+const App = observer(() => {
   const { todoStore } = React.useContext(TodoContext);
-  return useObserver(() =>
-      <div className='todos-container'>
-        <TodoInput addTodo={todoStore.addTodo} />
-        {
-          todoStore.todos.map((todo) => {
+  return (
+    <div className='todos-container'>
+      <TodoInput addTodo={todoStore.addTodo} />
+      {
+        todoStore.todos.map((todo) => {
+          return (
             <TodoItem
               todo={todo}
               removeTodo={todoStore.removeTodo}
               toggleTodo={todoStore.toggleTodo}
               key={todo.id}
             />
-          })
-        }
-        <div>{todoStore.todosCompletedCount} Task(s) Completed</div>
-      </div>
+          )
+        })
+      }
+      <div>{todoStore.availableTodosCount} item(s) available</div>
+      <div>{todoStore.todosCompletedCount} item(s) completed</div>
+    </div>
   );
-}
+})
 
 export default App;

@@ -10,15 +10,12 @@ export class TodoStore {
             removeTodo: action,
             toggleTodo: action,
             todosCompletedCount: computed,
+            availableTodosCount: computed
         })
     }
 
 
-    todos: ITodo[] = [{
-        id: Date.now(),
-        title: 'First Todo',
-        completed: false
-    }];
+    todos: ITodo[] = [];
 
     addTodo = (todo: string) => {
         if (todo.trim().length === 0) {
@@ -44,6 +41,10 @@ export class TodoStore {
 
     get todosCompletedCount() {
         return this.todos.filter(todo => todo.completed).length;
+    }
+
+    get availableTodosCount() {
+        return this.todos.filter(todo => !todo.completed).length
     }
 
 }
